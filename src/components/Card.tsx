@@ -1,33 +1,25 @@
 import { Share2, Trash2 } from "lucide-react";
 import Button from "./Button";
 import Tags from "./Tags";
+import { Contents } from "../Types/types";
 
-interface CardProps {
-  title: string
-  description? : string
-  type: string;
-  onClick?: () => void;
-  link?: URL,
-}
 
-export default function Card(props: CardProps) {
+export default function Card(content: Contents , onShare:()=>void , onDelete:()=>void ) {
   return (
     <>
       <div className="border border-zinc-300 bg-white max-w-80 min-h-80 min-w-80 min-h-80 rounded-md p-3">
         <div className="titleBtn mb-2 gap-2 flex justify-between items-center">
-          <div className="title font-medium line-clamp-2">
-            {props.title}
-          </div>
+          <div className="title font-medium line-clamp-2">{content.title}</div>
           <div className="buttons flex gap-1">
             <Button
               variant="outline"
-              onclick={props.onClick}
+              onclick={onShare}
               size="xs"
               startIcon={<Share2 size={16} />}
             />
             <Button
               variant="outline"
-              onclick={props.onClick}
+              onclick={onDelete}
               size="xs"
               startIcon={<Trash2 size={16} />}
             />
@@ -35,12 +27,12 @@ export default function Card(props: CardProps) {
         </div>
         <div className="desc mb-2">
           <p className="text-sm text-zinc-600 line-clamp-2">
-            {props.description}
+            {content.description}
           </p>
         </div>
 
         <div className="embed mb-3">
-          {props.type == "youtube" ? (
+          {content.type == "youtube" ? (
             <div className="player rounded-md overflow-hidden">
               <iframe
                 src="https://www.youtube.com/embed/dfqz4o1QPCk?si=JIa_x0V94LKhuvsJ"
