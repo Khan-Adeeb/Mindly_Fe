@@ -12,7 +12,7 @@ interface CardProps{
 export default function Card({content , onShare , onDelete} : CardProps ) {
   return (
     <>
-      <div className="border border-zinc-300 bg-white max-w-80 min-h-80 min-w-80 min-h-80 rounded-md p-3">
+      <div className="border border-zinc-300 bg-white  rounded-md p-3">
         <div className="titleBtn mb-2 gap-2 flex justify-between items-center">
           <div className="title font-medium line-clamp-2">{content.title}</div>
           <div className="buttons flex gap-1">
@@ -36,10 +36,10 @@ export default function Card({content , onShare , onDelete} : CardProps ) {
           </p>
         </div>
 
-        <div className="embed mb-3">
+        <div className="relative embed mb-3 w-full">
           {content.type == "youtube" ? (
             <div className="player rounded-md overflow-hidden">
-              <iframe
+              <iframe 
                 src={content.link}
                 title="YouTube video player"
                 frameBorder="0"
