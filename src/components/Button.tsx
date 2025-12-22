@@ -3,11 +3,12 @@ import { ReactElement } from "react";
 interface ButtonProps {
   variant: "primary" | "secondary" | "outline" | "ghost" | "danger";
   text?: string;
-  size:"xs" |"sm" | "md" | "lg";
+  size: "xs" | "sm" | "md" | "lg";
   onclick?: () => void;
   isDisable?: boolean;
   startIcon?: ReactElement;
   fullWidth?: boolean;
+  type?: "submit" | "button";
 }
 
 const variantStyle = {
@@ -20,7 +21,7 @@ const variantStyle = {
 };
 
 const sizeStyle = {
-  xs : "text-sm p-1.5",
+  xs: "text-sm p-1.5",
   sm: "text-sm px-3 py-1.5",
   md: "text-sm px-4 py-2.5",
   lg: "text-base px-6 py-3",
@@ -32,6 +33,7 @@ const defaultStyles =
 export default function Button(props: ButtonProps) {
   return (
     <button
+      type={props.type}
       disabled={props.isDisable}
       onClick={props.onclick}
       className={`${variantStyle[props.variant]} ${sizeStyle[props.size]} ${
@@ -43,5 +45,3 @@ export default function Button(props: ButtonProps) {
     </button>
   );
 }
-
-
