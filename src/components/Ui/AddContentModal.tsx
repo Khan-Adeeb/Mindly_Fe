@@ -11,7 +11,7 @@ interface AddContentProps {
 export default function AddContentModal({ open, onClose }: AddContentProps) {
   return (
     <div>
-      <Modal title="Add Content" open={open} onClose={onClose}>
+      <Modal size="lg" title="Add Content" open={open} onClose={onClose}>
         <div className="">
           <Input placeholder="Enter title" label="Title" />
 

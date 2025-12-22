@@ -6,9 +6,16 @@ interface ModalProps {
   title: string;
   open: boolean;
   onClose: () => void;
+  size: "sm" | "md" | "lg"
 }
 
-function Modal({ children, title, open, onClose }: ModalProps) {
+const sizeStyle = {
+  "sm" : "max-w-lg",
+  "md" : "max-w-xl",
+  "lg" : "max-w-2xl"
+}
+
+function Modal({ children, title, open, onClose , size }: ModalProps) {
   return (
     <>
       {open && (
@@ -17,7 +24,7 @@ function Modal({ children, title, open, onClose }: ModalProps) {
             className="absolute inset-0 bg-slate-400 opacity-90"
             onClick={onClose}
           />
-          <div className="relative rounded-lg max-h-[90vh] flex w-full max-w-2xl bg-white relative opacity-100 z-10">
+          <div className={`relative rounded-lg max-h-[90vh] flex w-full ${sizeStyle[size]} bg-white relative opacity-100 z-10` }>
             <div className="insideModal w-full">
               <div className="top flex justify-between items-center border-b border-slate-200 py-4 px-6" >
                 <div className="title font-semibold text-lg">{title}</div>
