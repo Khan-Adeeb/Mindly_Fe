@@ -75,7 +75,7 @@ export default function Card(content: Contents , onShare:()=>void , onDelete:()=
           <Tags title="learn" />
         </div>
         <div className="date">
-          <p className="text-xs text-zinc-600">Dec 15, 2020</p>
+          <p className="text-xs text-zinc-600">{content.createdAt}</p>
         </div>
       </div>
     </>
