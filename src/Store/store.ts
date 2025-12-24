@@ -1,6 +1,7 @@
 import axios from "axios";
 import { create } from "zustand";
 import { BACKEND_URL } from "../config";
+import { Contents } from "../Types/types";
 
 type modalStore = {
   isOpen: boolean;
@@ -8,8 +9,8 @@ type modalStore = {
 };
 
 interface AllContent {
-  contents: {};
-  isLoading: boolean;
+  contents: Contents[];
+  loading: boolean;
   error: any;
   fetchContent: () => void;
 }
@@ -53,25 +54,26 @@ export const useBrainShareModalStore = create<modalStore>((set) => ({
 }));
 
 export const useAllContentsStore = create<AllContent>((set) => ({
-  contents: {},
-  isLoading: false,
+  contents: [],
+  loading: false,
   error: null,
   fetchContent: async () => {
-    set({ isLoading: true });
+    set({ loading: true, error: null });
     try {
       const response = await axios.get(`${BACKEND_URL + "/dashboard"}`, {
         headers: {
-          Authorization: `${"Bearer " + localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
       const data = response.data.contents
-      console.log("response", data);
 
-      set({ contents: data });
+      set({ contents: data , loading: false});
     } catch (error) {
-      set({ error: error });
-    } finally {
-      set({ isLoading: false });
-    }
+      console.error("Fetch error:", error);
+      set({ 
+        error: "Failed to fetch contents",
+        loading: false 
+      });
+    } 
   },
 }));

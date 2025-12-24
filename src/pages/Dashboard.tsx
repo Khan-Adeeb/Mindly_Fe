@@ -12,7 +12,6 @@ import {
   useShareModalStore,
 } from "../Store/store";
 
-
 export default function Dashboard() {
   const addmodal = useAddModalStore((state) => state.isOpen);
   const toggleAdd = useAddModalStore((state) => state.toggleModal);
@@ -23,56 +22,70 @@ export default function Dashboard() {
   const brainmodal = useBrainShareModalStore((state) => state.isOpen);
   const toggleBrain = useBrainShareModalStore((state) => state.toggleModal);
 
-  let store = useAllContentsStore();
-  let { contents, fetchContent, isLoading } = store;
+  const { contents, fetchContent, loading, } = useAllContentsStore();
 
   useEffect(() => {
     fetchContent();
+
     let interval = setInterval(() => {
       fetchContent();
-      console.log(contents);
-      
     }, 30000);
+
     return () => {
       clearInterval(interval);
     };
   }, []);
 
-  
   return (
     <>
       <Navbar toggleModal={toggleBrain} />
       <Sidebar toggleModal={toggleAdd} />
-      <div className="main ml-64 pt-14 bg-zinc-50 min-h-screen">
-        <div className="inside p-5">
-          <div className="title mb-5">
-            <p className="text-xl font-medium text-zinc-800">All Content</p>
-            <p className="text-sm text-zinc-600">7 items</p>
-          </div>
-          <div className="card">
-            {isLoading && <p>Loading... </p>}
-            {
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-col-3 gap-4">
-                {contents.map((content) => (
-                  <Card
-                    key={content._id}
-                    content={content}
-                    onShare={toggleShare}
-                  />
-                ))}
-              </div>
-            }
+
+      {loading && contents.length === 0 ? (
+        <div className="main ml-64 pt-14 bg-zinc-50 min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-4"></div>
+            <p className="text-gray-600">Loading your content...</p>
           </div>
         </div>
-      </div>
+      ) : (
+        <>
+          <div className="main ml-64 pt-14 bg-zinc-50 min-h-screen">
+            <div className="inside p-5">
+              <div className="title mb-5">
+                <p className="text-xl font-medium text-zinc-800">All Content</p>
+                <p className="text-sm text-zinc-600">7 items</p>
+              </div>
+              <div className="card">
+                {loading && <p>Loading... </p>}
+                {
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-col-3 gap-4">
+                    {contents.map((content) => (
+                      <Card
+                        key={content._id}
+                        content={content}
+                        onShare={toggleShare}
+                      />
+                    ))}
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
 
-      <ShareComponentModal
-        link="http://"
-        open={sharemodal}
-        onClose={toggleShare}
-      />
-      <BrainShareModal link="http://" open={brainmodal} onClose={toggleBrain} />
-      <AddContentModal open={addmodal} onClose={toggleAdd} />
+          <ShareComponentModal
+            link="http://"
+            open={sharemodal}
+            onClose={toggleShare}
+          />
+          <BrainShareModal
+            link="http://"
+            open={brainmodal}
+            onClose={toggleBrain}
+          />
+          <AddContentModal open={addmodal} onClose={toggleAdd} />
+        </>
+      )}
     </>
   );
 }
