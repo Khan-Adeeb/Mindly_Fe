@@ -22,13 +22,15 @@ export default function Dashboard() {
   const brainmodal = useBrainShareModalStore((state) => state.isOpen);
   const toggleBrain = useBrainShareModalStore((state) => state.toggleModal);
 
-  const { contents, fetchContent, loading, } = useAllContentsStore();
+  const { contents, fetchContent, loading } = useAllContentsStore();
 
   useEffect(() => {
     fetchContent();
 
     let interval = setInterval(() => {
       fetchContent();
+      console.log("refreshing");
+      
     }, 30000);
 
     return () => {
@@ -54,21 +56,18 @@ export default function Dashboard() {
             <div className="inside p-5">
               <div className="title mb-5">
                 <p className="text-xl font-medium text-zinc-800">All Content</p>
-                <p className="text-sm text-zinc-600">7 items</p>
+                <p className="text-sm text-zinc-600">{contents.length} items</p>
               </div>
               <div className="card">
-                {loading && <p>Loading... </p>}
-                {
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-col-3 gap-4">
-                    {contents.map((content) => (
-                      <Card
-                        key={content._id}
-                        content={content}
-                        onShare={toggleShare}
-                      />
-                    ))}
-                  </div>
-                }
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-col-3 gap-4">
+                  {contents.map((content) => (
+                    <Card
+                      key={content._id}
+                      content={content}
+                      onShare={toggleShare}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>

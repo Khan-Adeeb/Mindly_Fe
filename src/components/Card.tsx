@@ -48,7 +48,7 @@ export default function Card({ content, onShare, onDelete }: CardProps) {
             {content.type == "youtube" ? (
               <YoutubeEmbed url={content.link} />
             ) : (
-              <TwitterEmbed/>
+              <TwitterEmbed url={content.link}/>
             )}
           </div>
         </div>
