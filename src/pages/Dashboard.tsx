@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Card from "../components/Card";
 import AddContentModal from "../components/modals/AddContentModal";
 import BrainShareModal from "../components/modals/BrainShareModal";
@@ -13,6 +13,8 @@ import {
   useFilterStore,
   useShareModalStore,
 } from "../Store/store";
+import axios from "axios";
+import { BACKEND_URL } from "../config";
 
 export default function Dashboard() {
   const addmodal = useAddModalStore((state) => state.isOpen);
@@ -26,13 +28,31 @@ export default function Dashboard() {
 
   const { contents, fetchContent, loading } = useAllContentsStore();
 
-  const selectedFilter = useFilterStore((state) => state.filter)
-  const setSelectedFilter = useFilterStore((state) => state.setFilter)
- 
-  const filtered= selectedFilter === Filters.All
-  ? contents
-  : contents.filter((c) => c.type === selectedFilter);
+  const selectedFilter = useFilterStore((state) => state.filter);
+  const setSelectedFilter = useFilterStore((state) => state.setFilter);
 
+  const filtered =
+    selectedFilter === Filters.All
+      ? contents
+      : contents.filter((c) => c.type === selectedFilter);
+
+  async function handleDelete(_id: string) {
+    try {
+      await axios.post(
+        `${BACKEND_URL + "/dashboard/delete"}`,
+        {
+          contentId: _id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      fetchContent();
+      alert("deleted");
+    } catch (error) {}
+  }
 
   useEffect(() => {
     fetchContent();
@@ -40,7 +60,7 @@ export default function Dashboard() {
     let interval = setInterval(() => {
       fetchContent();
       console.log("refreshing");
-    }, 30000);
+    }, 60000);
 
     return () => {
       clearInterval(interval);
@@ -80,10 +100,14 @@ export default function Dashboard() {
                 <p className="text-sm text-zinc-600">{contents.length} items</p>
               </div>
               <div className="card">
-                <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+                <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-3 gap-4 space-y-4">
                   {filtered.map((content) => (
                     <div key={content._id} className="break-inside-avoid mb-4">
-                      <Card content={content} onShare={toggleShare} />
+                      <Card
+                        content={content}
+                        onShare={toggleShare}
+                        onDelete={handleDelete}
+                      />
                     </div>
                   ))}
                 </div>
