@@ -1,5 +1,6 @@
 import { ArrowLeft } from "lucide-react";
 import { ReactElement } from "react";
+import { FRONTEND_URL } from "../config";
 
 interface AuthProps {
   title: string,
@@ -11,6 +12,7 @@ interface AuthProps {
 }
 
 export default function Auth(props : AuthProps) {
+
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-zinc-50">
       <div className="rounded-lg max-h-[90vh] flex w-md bg-white p-8 border border-zinc-200">
@@ -27,12 +29,12 @@ export default function Auth(props : AuthProps) {
           </div>
           <div className="flex gap-1 text-sm">
             <p className="text-zinc-600 ">{props.redirectTitle}</p>
-            <a  className="text-blue-700 hover:text-blue-800 hover:underline " href={props.redirectLink}>{props.redirectText}</a>
+            <a  className="text-blue-700 hover:text-blue-800 hover:underline " href={ FRONTEND_URL + props.redirectLink}>{props.redirectText}</a>
           </div>
           <div>
             <a 
             className="flex items-center gap-1 text-zinc-500 text-sm hover:text-zinc-800" 
-            href=""> 
+            href={FRONTEND_URL + "/"}> 
               <ArrowLeft size={16} />
               Back to home
             </a>

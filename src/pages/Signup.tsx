@@ -29,7 +29,7 @@ export default function Signup() {
   }
 
   return (
-     <Auth title="Create Account" subtitle="Start organizing your content" redirectLink="" redirectText="Sign in" redirectTitle="Already have an account?">
+     <Auth title="Create Account" subtitle="Start organizing your content" redirectLink="/signin" redirectText="Sign in" redirectTitle="Already have an account?">
           <>
             <Input reference={nameRef} label="Name" placeholder="John Doe" type="text" />
             <Input reference={userRef} label="Email" placeholder="you@example.com" type="mail" />
