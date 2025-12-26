@@ -30,7 +30,7 @@ const sizeStyle = {
 };
 
 const defaultStyles =
-  "flex justify-center items-center rounded-lg gap-2 font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-colors";
+  "flex justify-center items-center rounded-lg gap-2 font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer";
 
 export default function Button(props: ButtonProps) {
   return (

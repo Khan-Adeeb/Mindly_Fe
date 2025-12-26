@@ -34,13 +34,13 @@ export default function Sidebar( {totalCount,youtubeCount, twitterCount, selecte
             ${selected == Filters.All ? "bg-blue-50 text-blue-700 font-medium" : " text-zinc-600 hover:bg-zinc-50 "}`}>
             All Content
           </button>
-          <button onClick={()=>setFilter(Filters.Youtube)} className={`w-full flex p-2.5 text-sm flex-start rounded-md transition-all
+          <button onClick={()=>setFilter(Filters.Youtube)} className={`w-full flex p-2.5 text-sm flex-start rounded-md transition-all gap-2 items-center
             ${selected == Filters.Youtube ? "bg-blue-50 text-blue-700 font-medium" : " text-zinc-600 hover:bg-zinc-50 "}`}>
-            <Youtube size={20} /> Youtube
+            <Youtube size={16} /> Youtube
           </button>
-          <button onClick={()=>setFilter(Filters.Twitter)} className={`w-full flex p-2.5 text-sm flex-start rounded-md transition-all
+          <button onClick={()=>setFilter(Filters.Twitter)} className={`w-full flex p-2.5 text-sm flex-start rounded-md transition-all gap-2 items-center
             ${selected == Filters.Twitter ? "bg-blue-50 text-blue-700 font-medium" : " text-zinc-600 hover:bg-zinc-50 "}`}>
-            <Twitter size={20} /> Twitter
+            <Twitter size={16} /> Twitter
           </button>
         </div>
       </div>
