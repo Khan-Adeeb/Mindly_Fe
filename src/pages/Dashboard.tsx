@@ -38,19 +38,20 @@ export default function Dashboard() {
 
   async function handleDelete(_id: string) {
     try {
-      await axios.post(
-        `${BACKEND_URL + "/dashboard/delete"}`,
-        {
-          contentId: _id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+      if (confirm("Delete this content?")) {
+        await axios.post(
+          `${BACKEND_URL + "/dashboard/delete"}`,
+          {
+            contentId: _id,
           },
-        }
-      );
-      fetchContent();
-      alert("deleted");
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        fetchContent();
+      }
     } catch (error) {}
   }
 

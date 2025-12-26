@@ -1,4 +1,4 @@
-import { ExternalLink, } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Tweet } from "react-tweet";
 
 export default function TwitterEmbed({ url }: { url: string }) {
@@ -17,22 +17,16 @@ export default function TwitterEmbed({ url }: { url: string }) {
   }
 
   return (
-    <div className="">
-
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="ml-1 text-blue-600 hover:text-blue-700 text-xs flex items-center gap-1 font-medium"
-        >
-          View on Twitter <ExternalLink size={12} />
-        </a>
-
-        <div className="tweet">
-          <Tweet id={tweetId} />
-
-      </div>
-      
+    <div className="tweet">
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="ml-1 text-blue-600 hover:text-blue-700 text-xs flex items-center gap-1 font-medium"
+      >
+        View on Twitter <ExternalLink size={12} />
+      </a>
+      <Tweet id={tweetId} />
     </div>
   );
 }
