@@ -1,75 +1,236 @@
-import { Share2, Twitter, Youtube } from "lucide-react";
 import Button from "../components/Button";
+import { TwitterIcon, YoutubeIcon, ArrowRightIcon } from "lucide-react";
 
-export default function Landing({ onLogin, onSignup }: any) {
+const NAV_LINKS = [
+  { label: "Features", href: "#features" },
+  { label: "How it works", href: "#how-it-works" },
+  { label: "FAQ", href: "#faq" },
+];
+
+function Navbar() {
   return (
-    <div className="min-h-screen bg-white">
-      <nav className="border-b border-gray-200 px-6 py-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold">M</span>
-            </div>
-            <h1 className="text-xl font-semibold text-gray-900">Mindly</h1>
-          </div>
-          <div className="flex items-center gap-3">
-            <Button size="md" variant="ghost" onclick={onLogin} text="Login"/>
-            <Button variant="primary" size="md" onclick={onSignup} text="Get Started"/>
-          </div>
-        </div>
-      </nav>
+    <nav className="w-full flex items-center justify-between py-4 px-6 md:px-12 bg-white border-b border-zinc-100 sticky top-0 z-30">
+      <div className="flex items-center gap-2 text-2xl font-bold text-blue-600">
+        <span className="text-3xl">🧠</span>
+        Mindly
+      </div>
+      <div className="hidden md:flex gap-8 items-center">
+        {NAV_LINKS.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            className="text-zinc-700 hover:text-blue-600 font-medium transition-colors"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+      <div className="flex gap-2 items-center">
+        <Button
+          variant="outline"
+          size="sm"
+          text="Sign in"
+        />
+        <Button
+          variant="primary"
+          size="sm"
+          text="Get Started"
+        />
+      </div>
+    </nav>
+  );
+}
 
-      <div className="max-w-4xl mx-auto px-6 py-20">
-        <div className="text-center space-y-6">
-          <h1 className="text-5xl font-bold text-gray-900 leading-tight">
-            Your Second Brain for
-            <br />
-            <span className="text-blue-600">Social Content</span>
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Save, organize, and share your favorite YouTube videos and Twitter
-            posts in one place
-          </p>
-          <div className="flex items-center justify-center gap-3 pt-4">
-            <Button variant="primary" size="lg" onclick={onSignup} text="Start Free"/>
-            <Button variant="secondary" size="lg" onclick={onLogin} text="Login"/>
-          </div>
-        </div>
+function Hero() {
+  return (
+    <section className="w-full flex flex-col items-center justify-center py-16 px-4 md:px-0 bg-gradient-to-b from-blue-50 to-white">
+      <h1 className="text-4xl md:text-6xl font-extrabold text-center text-blue-700 mb-6 max-w-3xl leading-tight">
+        Supercharge your mind with <span className="text-blue-600">Mindly</span>
+      </h1>
+      <p className="text-lg md:text-2xl text-zinc-700 text-center mb-8 max-w-2xl">
+        Mindly helps you organize thoughts, boost productivity, and achieve your goals with ease. Experience clarity and focus like never before.
+      </p>
+      <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md justify-center">
+       
+        <Button
+          variant="primary"
+          size="md"
+          text="Join Waitlist"
+          fullWidth
+        />
+      </div>
+      <div className="flex gap-4 mt-8">
+        <a href="#" className="text-blue-600 hover:underline flex items-center gap-1">
+          <TwitterIcon size={20} />
+          Twitter
+        </a>
+        <a href="#" className="text-blue-600 hover:underline flex items-center gap-1">
+          <YoutubeIcon size={20} />
+          YouTube
+        </a>
+      </div>
+    </section>
+  );
+}
 
-        <div className="grid md:grid-cols-3 gap-6 mt-16 ">
-          <div className="p-6 text-center border rounded-lg border-zinc-200">
-            <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mx-auto mb-3">
-              <Youtube className="text-blue-600" size={24} />
+function Features() {
+  const features = [
+    {
+      icon: "📝",
+      title: "Smart Notes",
+      desc: "Capture and organize your thoughts instantly with AI-powered suggestions.",
+    },
+    {
+      icon: "📅",
+      title: "Task Planner",
+      desc: "Stay on top of your day with an intuitive, distraction-free planner.",
+    },
+    {
+      icon: "🔔",
+      title: "Reminders",
+      desc: "Never miss a beat with timely reminders and notifications.",
+    },
+    {
+      icon: "📊",
+      title: "Progress Tracking",
+      desc: "Visualize your growth and stay motivated with insightful analytics.",
+    },
+  ];
+  return (
+    <section id="features" className="py-20 px-4 md:px-0 bg-white w-full">
+      <div className="max-w-5xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-blue-700 mb-12">
+          Features
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          {features.map((f) => (
+            <div
+              key={f.title}
+              className="flex flex-col items-center bg-blue-50 rounded-xl p-6 shadow-sm border border-blue-100"
+            >
+              <div className="text-4xl mb-4">{f.icon}</div>
+              <div className="font-semibold text-lg text-blue-700 mb-2">{f.title}</div>
+              <div className="text-zinc-600 text-center text-base">{f.desc}</div>
             </div>
-            <h3 className="text-base font-semibold text-gray-900 mb-2">
-              YouTube Videos
-            </h3>
-            <p className="text-sm text-gray-600">
-              Save and embed videos directly
-            </p>
-          </div>
-          <div className="p-6 text-center border rounded-lg border-zinc-200">
-            <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mx-auto mb-3">
-              <Twitter className="text-blue-600" size={24} />
-            </div>
-            <h3 className="text-base font-semibold text-gray-900 mb-2">
-              Twitter Posts
-            </h3>
-            <p className="text-sm text-gray-600">
-              Keep track of important tweets
-            </p>
-          </div>
-          <div className="p-6 text-center border rounded-lg border-zinc-200">
-            <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mx-auto mb-3">
-              <Share2 className="text-blue-600" size={24} />
-            </div>
-            <h3 className="text-base font-semibold text-gray-900 mb-2">
-              Easy Sharing
-            </h3>
-            <p className="text-sm text-gray-600">Share with a single link</p>
-          </div>
+          ))}
         </div>
       </div>
+    </section>
+  );
+}
+
+function HowItWorks() {
+  const steps = [
+    {
+      icon: "1️⃣",
+      title: "Sign Up",
+      desc: "Create your free Mindly account in seconds.",
+    },
+    {
+      icon: "2️⃣",
+      title: "Set Your Goals",
+      desc: "Tell us what you want to achieve and Mindly will help you get there.",
+    },
+    {
+      icon: "3️⃣",
+      title: "Stay Productive",
+      desc: "Use Mindly's tools to organize, plan, and track your progress.",
+    },
+  ];
+  return (
+    <section id="how-it-works" className="py-20 px-4 md:px-0 bg-blue-50 w-full">
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-blue-700 mb-12">
+          How it works
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {steps.map((step) => (
+            <div
+              key={step.title}
+              className="flex flex-col items-center bg-white rounded-xl p-6 shadow-sm border border-blue-100"
+            >
+              <div className="text-4xl mb-4">{step.icon}</div>
+              <div className="font-semibold text-lg text-blue-700 mb-2">{step.title}</div>
+              <div className="text-zinc-600 text-center text-base">{step.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FAQ() {
+  const faqs = [
+    {
+      q: "Is Mindly free to use?",
+      a: "Yes! Mindly offers a free plan with all core features. Premium features are optional.",
+    },
+    {
+      q: "Can I use Mindly on mobile?",
+      a: "Absolutely. Mindly is fully responsive and works great on any device.",
+    },
+    {
+      q: "How do I get started?",
+      a: "Just sign up with your email and you’re ready to go!",
+    },
+    {
+      q: "Is my data secure?",
+      a: "We take privacy seriously. Your data is encrypted and never shared.",
+    },
+  ];
+  return (
+    <section id="faq" className="py-20 px-4 md:px-0 bg-white w-full">
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-blue-700 mb-12">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-6">
+          {faqs.map((faq, idx) => (
+            <div key={idx} className="border-b border-zinc-200 pb-6">
+              <div className="font-semibold text-lg text-blue-700 mb-2">{faq.q}</div>
+              <div className="text-zinc-600 text-base">{faq.a}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="w-full py-8 px-4 md:px-0 bg-blue-600 text-white mt-12">
+      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-2 text-xl font-bold">
+          <span className="text-2xl">🧠</span> Mindly
+        </div>
+        <div className="flex gap-6">
+          <a href="#features" className="hover:underline">Features</a>
+          <a href="#how-it-works" className="hover:underline">How it works</a>
+          <a href="#faq" className="hover:underline">FAQ</a>
+        </div>
+        <div className="flex gap-4">
+          <a href="#" aria-label="Twitter" className="hover:text-blue-200"><TwitterIcon size={20} /></a>
+          <a href="#" aria-label="YouTube" className="hover:text-blue-200"><YoutubeIcon size={20} /></a>
+        </div>
+      </div>
+      <div className="text-center text-sm text-blue-100 mt-6">© {new Date().getFullYear()} Mindly. All rights reserved.</div>
+    </footer>
+  );
+}
+
+export default function Home() {
+  return (
+    <div className="min-h-screen flex flex-col bg-white">
+      <Navbar />
+      <main className="flex-1 flex flex-col gap-0">
+        <Hero />
+        <Features />
+        <HowItWorks />
+        <FAQ />
+      </main>
+      <Footer />
     </div>
   );
 }

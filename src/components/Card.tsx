@@ -7,14 +7,18 @@ import TwitterEmbed from "./TwitterEmbed";
 import { SharedCont } from "../Store/store";
 
 interface CardProps {
-sharedContents : Record < string , SharedCont>,   
+  sharedContents: Record<string, SharedCont>;
   content: Contents;
-  onShare?: (contentId : string) => void;
+  onShare?: (contentId: string) => void;
   onDelete?: (arg: string) => void;
 }
 
-export default function Card({sharedContents, content, onShare, onDelete }: CardProps) {
-
+export default function Card({
+  sharedContents,
+  content,
+  onShare,
+  onDelete,
+}: CardProps) {
   const isShared = !!sharedContents[content._id]?.isShared;
   return (
     <>
@@ -27,7 +31,7 @@ export default function Card({sharedContents, content, onShare, onDelete }: Card
             <div className="buttons flex gap-1">
               <Button
                 variant={isShared ? "primary" : "outline"}
-                onclick={()=>onShare?.(content._id)}
+                onclick={() => onShare?.(content._id)}
                 size="xs"
                 startIcon={<Share2 size={14} />}
               />

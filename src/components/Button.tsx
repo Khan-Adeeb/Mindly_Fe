@@ -19,7 +19,8 @@ const variantStyle = {
     "border bg-white border-zinc-300 rounded-md text-zinc-600 hover:text-zinc-700  hover:bg-zinc-100",
   ghost: "text-gray-700 hover:bg-gray-100",
   danger: "bg-red-600 text-white hover:bg-red-700",
-  dangerOutline : "border bg-white border-zinc-300 rounded-md text-zinc-600 hover:border-red-200 hover:bg-red-50 hover:text-red-500",
+  dangerOutline:
+    "border bg-white border-zinc-300 rounded-md text-zinc-600 hover:border-red-200 hover:bg-red-50 hover:text-red-500",
 };
 
 const sizeStyle = {

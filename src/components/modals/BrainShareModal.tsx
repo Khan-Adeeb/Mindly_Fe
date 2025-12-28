@@ -36,9 +36,7 @@ export default function BrainShareModal({
             />
 
             <Button onclick={copyText} variant="secondary" size="sm">
-                <>
-              {copied ? "Copied!" : "Copy"}
-              </>
+              <>{copied ? "Copied!" : "Copy"}</>
             </Button>
           </div>
         </div>

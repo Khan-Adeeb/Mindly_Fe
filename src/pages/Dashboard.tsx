@@ -22,7 +22,7 @@ export default function Dashboard() {
   const toggleAdd = useAddModalStore((state) => state.toggleModal);
 
   const sharemodal = useShareModalStore((state) => state.isOpen);
-  const ShareId = useShareModalStore((state)=> state.contentId);
+  const ShareId = useShareModalStore((state) => state.contentId);
   const toggleShare = useShareModalStore((state) => state.toggleModal);
 
   const brainmodal = useBrainShareModalStore((state) => state.isOpen);
@@ -33,8 +33,7 @@ export default function Dashboard() {
   const selectedFilter = useFilterStore((state) => state.filter);
   const setSelectedFilter = useFilterStore((state) => state.setFilter);
 
-  const {sharedContents, isloading  , toggleContent} = useContentShareStore()  
-
+  const { sharedContents, isloading, toggleContent } = useContentShareStore();
 
   const filtered =
     selectedFilter === Filters.All
@@ -77,7 +76,7 @@ export default function Dashboard() {
     contents.length > 0 && contents[0]?.userId?.name
       ? contents[0].userId.name
       : "User";
- 
+
   return (
     <>
       <Navbar username={username} toggleModal={toggleBrain} />
@@ -122,10 +121,10 @@ export default function Dashboard() {
             </div>
           </div>
 
-         <ShareComponentModal
+          <ShareComponentModal
             open={sharemodal}
-            onClose={toggleShare} 
-            onToggleShare={toggleContent} 
+            onClose={toggleShare}
+            onToggleShare={toggleContent}
             sharedContents={sharedContents}
             loading={isloading}
             contentId={ShareId}

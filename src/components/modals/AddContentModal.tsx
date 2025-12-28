@@ -19,7 +19,6 @@ export default function AddContentModal({ open, onClose }: AddContentProps) {
 
   const selectedtype = useType((state) => state.type);
 
-
   const setType = useType((state) => state.setType);
 
   async function addContent() {
@@ -36,16 +35,15 @@ export default function AddContentModal({ open, onClose }: AddContentProps) {
           type: type,
           description: description,
           link: link,
-          tag: []
-        },{
+          tag: [],
+        },
+        {
           headers: {
             Authorization: `${"Bearer " + localStorage.getItem("token")}`,
-          }
+          },
         }
       );
-
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 
   return (
