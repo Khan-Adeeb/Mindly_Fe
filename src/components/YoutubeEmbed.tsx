@@ -24,7 +24,7 @@ export default function YoutubeEmbed({url}: {url: string}) {
   }
 
   return (
-    <div className="player rounded-md overflow-hidden">
+    <div className=" rounded-md h-full overflow-hidden">
       <iframe
         className="w-full h-full"
         src={`https://www.youtube.com/embed/${videoId}`}

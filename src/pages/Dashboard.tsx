@@ -10,6 +10,7 @@ import {
   useAddModalStore,
   useAllContentsStore,
   useBrainShareModalStore,
+  useContentShareStore,
   useFilterStore,
   useShareModalStore,
 } from "../Store/store";
@@ -21,6 +22,7 @@ export default function Dashboard() {
   const toggleAdd = useAddModalStore((state) => state.toggleModal);
 
   const sharemodal = useShareModalStore((state) => state.isOpen);
+  const ShareId = useShareModalStore((state) => state.contentId);
   const toggleShare = useShareModalStore((state) => state.toggleModal);
 
   const brainmodal = useBrainShareModalStore((state) => state.isOpen);
@@ -30,6 +32,8 @@ export default function Dashboard() {
 
   const selectedFilter = useFilterStore((state) => state.filter);
   const setSelectedFilter = useFilterStore((state) => state.setFilter);
+
+  const { sharedContents, isloading, toggleContent } = useContentShareStore();
 
   const filtered =
     selectedFilter === Filters.All
@@ -105,6 +109,7 @@ export default function Dashboard() {
                   {filtered.map((content) => (
                     <div key={content._id} className="break-inside-avoid mb-4">
                       <Card
+                        sharedContents={sharedContents}
                         content={content}
                         onShare={toggleShare}
                         onDelete={handleDelete}
@@ -117,10 +122,14 @@ export default function Dashboard() {
           </div>
 
           <ShareComponentModal
-            link="http://"
             open={sharemodal}
             onClose={toggleShare}
+            onToggleShare={toggleContent}
+            sharedContents={sharedContents}
+            loading={isloading}
+            contentId={ShareId}
           />
+
           <BrainShareModal
             link="http://"
             open={brainmodal}
