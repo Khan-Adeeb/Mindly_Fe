@@ -8,6 +8,12 @@ type modalStore = {
   toggleModal: () => void;
 };
 
+type sharemodalStore = {
+  isOpen: boolean;
+  contentId: string;
+  toggleModal: (contentId? : string) => void;
+};
+
 interface AllContent {
   contents: Contents[];
   loading: boolean;
@@ -50,10 +56,14 @@ export const useAddModalStore = create<modalStore>((set) => ({
   },
 }));
 
-export const useShareModalStore = create<modalStore>((set) => ({
+export const useShareModalStore = create<sharemodalStore>((set) => ({
   isOpen: false,
-  toggleModal: () => {
-    set((state) => ({ isOpen: !state.isOpen }));
+  contentId: "",
+ toggleModal: (contentId = "") => {
+    set((state) => ({ 
+      isOpen: !state.isOpen, 
+      contentId: state.isOpen ? "" : contentId
+    }));
   },
 }));
 
@@ -96,24 +106,25 @@ export const useFilterStore = create<filterStore>((set) => ({
   },
 }));
 
-type SharedCont = {
+export type SharedCont = {
   link : string
   isShared : boolean
 }
 
 interface ContentShareStore{
   sharedContents: Record <string, SharedCont>
-  loading : boolean;
+  isloading : string | null;
   error : any ;
   toggleContent : (contentId : string , share : boolean) => void,
 }
 
 export const useContentShareStore = create<ContentShareStore>((set , get ) => ({
   sharedContents: {},
-  loading: false,
+  isloading: null ,
   error: null,
+
   toggleContent: async (contentId, share) => {
-    set({loading: true })
+    set({isloading: contentId })
     try {
       const response = await axios.post(
         `${BACKEND_URL}/share/contentShare`,
@@ -130,19 +141,19 @@ export const useContentShareStore = create<ContentShareStore>((set , get ) => ({
 
       if (share) {
         const getlink = response.data.link;
-        set({
+        set((state) => ({
           sharedContents: {
-            ...get().sharedContents,
-            [contentId]: { link: getlink, isShared: share },
+            ...state.sharedContents,
+            [contentId]: { link: getlink, isShared: true },
           },
-          loading: false,
-        });
+          isloading: null, 
+        }));
       } else {
         const updatedContents = {...get().sharedContents}
         delete updatedContents[contentId];
         set({
           sharedContents: updatedContents,
-          loading: false,
+          isloading: null,
         });
       }
     } catch (error) {
