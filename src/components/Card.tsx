@@ -4,14 +4,18 @@ import Tags from "./Tags";
 import { Contents } from "../Types/types";
 import YoutubeEmbed from "./YoutubeEmbed";
 import TwitterEmbed from "./TwitterEmbed";
+import { SharedCont } from "../Store/store";
 
 interface CardProps {
+sharedContents : Record < string , SharedCont>,   
   content: Contents;
-  onShare?: () => void;
+  onShare?: (contentId : string) => void;
   onDelete?: (arg: string) => void;
 }
 
-export default function Card({ content, onShare, onDelete }: CardProps) {
+export default function Card({sharedContents, content, onShare, onDelete }: CardProps) {
+
+  const isShared = !!sharedContents[content._id]?.isShared;
   return (
     <>
       <div className="border border-zinc-300 bg-white  rounded-md p-3 flex flex-col justify-between">
@@ -22,8 +26,8 @@ export default function Card({ content, onShare, onDelete }: CardProps) {
             </div>
             <div className="buttons flex gap-1">
               <Button
-                variant="outline"
-                onclick={onShare}
+                variant={isShared ? "primary" : "outline"}
+                onclick={()=>onShare?.(content._id)}
                 size="xs"
                 startIcon={<Share2 size={14} />}
               />
