@@ -1,4 +1,4 @@
-export default function YoutubeEmbed({url}: {url: string}) {
+export default function YoutubeEmbed({ url }: { url: string }) {
   const getVideoId = (url: string) => {
     const patterns = [
       /(?:youtube\.com\/watch\?v=)([^&\?\/]+)/,

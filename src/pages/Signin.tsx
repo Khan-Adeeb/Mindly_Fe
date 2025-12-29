@@ -7,7 +7,6 @@ import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 
 export default function Signin() {
-
   const navigate = useNavigate();
 
   const userMail = useRef<HTMLInputElement>(null);
@@ -24,7 +23,7 @@ export default function Signin() {
 
     const jwtToken = response.data.token;
     localStorage.setItem("token", jwtToken);
-    navigate("/dashboard")
+    navigate("/dashboard");
 
     alert(response.data.msg);
   }

@@ -75,7 +75,7 @@ export default function ShareComponentModal({
                 <div className="flex gap-2 mt-1">
                   <input
                     type="text"
-                    value={FRONTEND_URL+`/shared-content/`+shareLink}
+                    value={FRONTEND_URL + `/shared-content/` + shareLink}
                     readOnly
                     className="flex-1 px-4 py-2 text-sm border border-gray-300 rounded-lg bg-gray-50 text-zinc-600"
                   />
@@ -97,7 +97,7 @@ export default function ShareComponentModal({
                   </button>
                 </div>
                 <a
-                  href={FRONTEND_URL+`/shared-content/`+shareLink}
+                  href={FRONTEND_URL + `/shared-content/` + shareLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs text-blue-600 hover:text-blue-700 flex items-center gap-1"

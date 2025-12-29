@@ -1,11 +1,16 @@
 interface InputProps {
-  type?: "text" | "mail" | "password"
+  type?: "text" | "mail" | "password";
   label?: string;
   placeholder?: string;
-  reference?: any
+  reference?: any;
 }
 
-export default function Input({reference, type, label, placeholder }: InputProps) {
+export default function Input({
+  reference,
+  type,
+  label,
+  placeholder,
+}: InputProps) {
   return (
     <div className="w-full flex flex-col gap-1">
       {label && <label className="text-zinc-800 text-sm">{label}</label>}

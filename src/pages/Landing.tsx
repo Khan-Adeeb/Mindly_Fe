@@ -1,5 +1,5 @@
 import Button from "../components/Button";
-import { TwitterIcon, YoutubeIcon, ArrowRightIcon } from "lucide-react";
+import { TwitterIcon, YoutubeIcon } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Features", href: "#features" },
@@ -26,16 +26,8 @@ function Navbar() {
         ))}
       </div>
       <div className="flex gap-2 items-center">
-        <Button
-          variant="outline"
-          size="sm"
-          text="Sign in"
-        />
-        <Button
-          variant="primary"
-          size="sm"
-          text="Get Started"
-        />
+        <Button variant="outline" size="sm" text="Sign in" />
+        <Button variant="primary" size="sm" text="Get Started" />
       </div>
     </nav>
   );
@@ -48,23 +40,24 @@ function Hero() {
         Supercharge your mind with <span className="text-blue-600">Mindly</span>
       </h1>
       <p className="text-lg md:text-2xl text-zinc-700 text-center mb-8 max-w-2xl">
-        Mindly helps you organize thoughts, boost productivity, and achieve your goals with ease. Experience clarity and focus like never before.
+        Mindly helps you organize thoughts, boost productivity, and achieve your
+        goals with ease. Experience clarity and focus like never before.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md justify-center">
-       
-        <Button
-          variant="primary"
-          size="md"
-          text="Join Waitlist"
-          fullWidth
-        />
+        <Button variant="primary" size="md" text="Join Waitlist" fullWidth />
       </div>
       <div className="flex gap-4 mt-8">
-        <a href="#" className="text-blue-600 hover:underline flex items-center gap-1">
+        <a
+          href="#"
+          className="text-blue-600 hover:underline flex items-center gap-1"
+        >
           <TwitterIcon size={20} />
           Twitter
         </a>
-        <a href="#" className="text-blue-600 hover:underline flex items-center gap-1">
+        <a
+          href="#"
+          className="text-blue-600 hover:underline flex items-center gap-1"
+        >
           <YoutubeIcon size={20} />
           YouTube
         </a>
@@ -109,8 +102,12 @@ function Features() {
               className="flex flex-col items-center bg-blue-50 rounded-xl p-6 shadow-sm border border-blue-100"
             >
               <div className="text-4xl mb-4">{f.icon}</div>
-              <div className="font-semibold text-lg text-blue-700 mb-2">{f.title}</div>
-              <div className="text-zinc-600 text-center text-base">{f.desc}</div>
+              <div className="font-semibold text-lg text-blue-700 mb-2">
+                {f.title}
+              </div>
+              <div className="text-zinc-600 text-center text-base">
+                {f.desc}
+              </div>
             </div>
           ))}
         </div>
@@ -150,8 +147,12 @@ function HowItWorks() {
               className="flex flex-col items-center bg-white rounded-xl p-6 shadow-sm border border-blue-100"
             >
               <div className="text-4xl mb-4">{step.icon}</div>
-              <div className="font-semibold text-lg text-blue-700 mb-2">{step.title}</div>
-              <div className="text-zinc-600 text-center text-base">{step.desc}</div>
+              <div className="font-semibold text-lg text-blue-700 mb-2">
+                {step.title}
+              </div>
+              <div className="text-zinc-600 text-center text-base">
+                {step.desc}
+              </div>
             </div>
           ))}
         </div>
@@ -188,7 +189,9 @@ function FAQ() {
         <div className="space-y-6">
           {faqs.map((faq, idx) => (
             <div key={idx} className="border-b border-zinc-200 pb-6">
-              <div className="font-semibold text-lg text-blue-700 mb-2">{faq.q}</div>
+              <div className="font-semibold text-lg text-blue-700 mb-2">
+                {faq.q}
+              </div>
               <div className="text-zinc-600 text-base">{faq.a}</div>
             </div>
           ))}
@@ -206,16 +209,28 @@ function Footer() {
           <span className="text-2xl">🧠</span> Mindly
         </div>
         <div className="flex gap-6">
-          <a href="#features" className="hover:underline">Features</a>
-          <a href="#how-it-works" className="hover:underline">How it works</a>
-          <a href="#faq" className="hover:underline">FAQ</a>
+          <a href="#features" className="hover:underline">
+            Features
+          </a>
+          <a href="#how-it-works" className="hover:underline">
+            How it works
+          </a>
+          <a href="#faq" className="hover:underline">
+            FAQ
+          </a>
         </div>
         <div className="flex gap-4">
-          <a href="#" aria-label="Twitter" className="hover:text-blue-200"><TwitterIcon size={20} /></a>
-          <a href="#" aria-label="YouTube" className="hover:text-blue-200"><YoutubeIcon size={20} /></a>
+          <a href="#" aria-label="Twitter" className="hover:text-blue-200">
+            <TwitterIcon size={20} />
+          </a>
+          <a href="#" aria-label="YouTube" className="hover:text-blue-200">
+            <YoutubeIcon size={20} />
+          </a>
         </div>
       </div>
-      <div className="text-center text-sm text-blue-100 mt-6">© {new Date().getFullYear()} Mindly. All rights reserved.</div>
+      <div className="text-center text-sm text-blue-100 mt-6">
+        © {new Date().getFullYear()} Mindly. All rights reserved.
+      </div>
     </footer>
   );
 }

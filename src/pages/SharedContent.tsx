@@ -20,11 +20,15 @@ export default function SharedContent() {
       setError(null);
 
       try {
-        const response = await axios.get(`${BACKEND_URL}/share/content/${hash}`);
+        const response = await axios.get(
+          `${BACKEND_URL}/share/content/${hash}`
+        );
         setContent(response.data.content);
       } catch (err: any) {
         console.error("Error fetching shared content:", err);
-        setError(err.response?.data?.msg || "Content not found or link expired");
+        setError(
+          err.response?.data?.msg || "Content not found or link expired"
+        );
       } finally {
         setLoading(false);
       }
@@ -35,12 +39,14 @@ export default function SharedContent() {
     }
   }, [hash]);
 
-
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="animate-spin text-blue-600 mx-auto mb-4" size={48} />
+          <Loader2
+            className="animate-spin text-blue-600 mx-auto mb-4"
+            size={48}
+          />
           <p className="text-gray-600">Loading shared content...</p>
         </div>
       </div>
@@ -70,7 +76,6 @@ export default function SharedContent() {
       </div>
     );
   }
-
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
