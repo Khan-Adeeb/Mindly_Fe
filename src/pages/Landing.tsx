@@ -87,6 +87,27 @@ export default function Landing() {
           </div>
         </div>
 
+       <div className="mt-16 max-w-5xl mx-auto">
+  <div className="rounded-2xl border-4 border-gray-200 shadow-2xl overflow-hidden bg-white">
+    <div className="bg-gray-100 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
+      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+      <div className="flex-1 text-center text-sm text-gray-600">
+        dashboard.brainly.app
+      </div>
+    </div>
+    <div className="relative w-full" style={{ paddingBottom: '62.79%' }}>
+      <iframe
+        src="https://www.loom.com/embed/abdf456ddfae4eb08687f7b74174b3ca?autoplay=1&loop=1&hideEmbedTopBar=true"
+        frameBorder="0"
+        allowFullScreen
+        className="absolute top-0 left-0 w-full h-full"
+      />
+    </div>
+  </div>
+</div>
+
    
       </section>
 
